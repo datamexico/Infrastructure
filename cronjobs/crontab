@@ -1,0 +1,6 @@
+0 3 * * * redis-cli EVAL "return redis.call('DEL', unpack(redis.call('KEYS', '*covid*')))" 0 > ~/output.txt
+1 3 * * * redis-cli EVAL "return redis.call('DEL', unpack(redis.call('KEYS', '*gobmx_covid*')))" 0 > ~/output_agg.txt
+2 3 * * * redis-cli EVAL "return redis.call('DEL', unpack(redis.call('KEYS', '*gobmx_covid_stats_metroarea*')))" 0 > ~/output_metro.txt
+3 3 * * * redis-cli EVAL "return redis.call('DEL', unpack(redis.call('KEYS', '*gobmx_covid_stats_mun*')))" 0 > ~/output_mun.txt
+4 3 * * * redis-cli EVAL "return redis.call('DEL', unpack(redis.call('KEYS', '*gobmx_covid_stats_nation*')))" 0 > ~/output_nation.txt
+5 3 * * * redis-cli EVAL "return redis.call('DEL', unpack(redis.call('KEYS', '*gobmx_covid_stats_state*')))" 0 > ~/output_state.txt

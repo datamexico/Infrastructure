@@ -1,0 +1,10 @@
+55 2 * * * sudo systemctl restart tesseract-olap.service
+50 2 * * * sudo service clickhouse-server restart
+
+55 3 * * * sudo grep -lr "KEY: .*covid.*" /absolute/path/caches/tesseract/ | sudo xargs rm >> ~/cron_covid_cache.log 2>&1
+
+0 2 * * * cd /absolute/path/data-etl && docker run --rm -t -v $(pwd):/data-etl --workdir /data-etl/etl --env-file $(pwd)/.env --name=dmx-etl dmx-etl:latest python3 covid/covid_pipeline.py > ~/cron_covid.log
+25 2 * * * cd /absolute/path/data-etl && docker run --rm -t -v $(pwd):/data-etl --workdir /data-etl/etl --env-file $(pwd)/.env --name=dmx-etl dmx-etl:latest python3 covid/covid_stats_state.py > ~/cron_covid_state.log
+29 2 * * * cd /absolute/path/data-etl && docker run --rm -t -v $(pwd):/data-etl --workdir /data-etl/etl --env-file $(pwd)/.env --name=dmx-etl dmx-etl:latest python3 covid/covid_stats_mun.py > ~/cron_covid_mun.log
+35 2 * * * cd /absolute/path/data-etl && docker run --rm -t -v $(pwd):/data-etl --workdir /data-etl/etl --env-file $(pwd)/.env --name=dmx-etl dmx-etl:latest python3 covid/covid_stats_nation.py > ~/cron_covid_nation.log
+38 2 * * * cd /absolute/path/data-etl && docker run --rm -t -v $(pwd):/data-etl --workdir /data-etl/etl --env-file $(pwd)/.env --name=dmx-etl dmx-etl:latest python3 covid/covid_stats_metroarea.py > ~/cron_covid_metro_area.log

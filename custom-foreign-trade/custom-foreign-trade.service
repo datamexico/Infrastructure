@@ -1,0 +1,13 @@
+[Unit]
+Description=Project
+After=network.target
+
+[Service]
+User=deploy
+WorkingDirectory=/absolute/path/custom-foreign-trade/
+ExecStart=/absolute/path/custom-foreign-trade/py3/bin/gunicorn app:app -w 6 -b 127.0.0.1:5000
+Environment="FLASK_APP=app.py"
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
