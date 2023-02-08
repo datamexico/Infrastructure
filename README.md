@@ -485,6 +485,7 @@ module.exports = {
         CANON_DB_PW: "<postgres-db-password>",
         CANON_DB_NAME: "mexico_cms",
         CANON_DB_HOST: "<api-domain>",
+	CANON_CONST_STORAGE_BUCKET: "local",
         //CANON_GOOGLE_ANALYTICS: "",
         CANON_CMS_REQUESTS_PER_SECOND: 60
       }
