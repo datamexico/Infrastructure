@@ -3,9 +3,11 @@
 
 A continuacion se describen los pasos para instalar y configurar los servidores, estos se dividen en Backend y Frontend, dos servidores separados cuyas funciones son almacenar y disponibilizar los datos procesados, en el caso del Backend y la plataforma que es con lo que interactua el usuario que es el Frontend.
 
-<img title="Infrastructure schema" src="schema.png">
+<p align=center>
+<img title="Infrastructure schema" alt="Infrastructure schema" src="schema.png" width="709.5" height="456.75">
+</p>
 
-<p style="text-align: center;">Imagen 1: Diagrama de infraestructura</p>
+<p align=center>Imagen 1: Diagrama de infraestructura</p>
 
 # Instalacion Backend
 
