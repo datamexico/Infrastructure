@@ -1,3 +1,12 @@
+
+# Infraestructura
+
+A continuacion se describen los pasos para instalar y configurar los servidores, estos se dividen en Backend y Frontend, dos servidores separados cuyas funciones son almacenar y disponibilizar los datos procesados, en el caso del Backend y la plataforma que es con lo que interactua el usuario que es el Frontend.
+
+<img title="Infrastructure schema" src="schema.png">
+
+<p style="text-align: center;">Imagen 1: Diagrama de infraestructura</p>
+
 # Instalacion Backend
 
 El servidor backend tiene las siguientes aplicaciones instaladas:
@@ -518,6 +527,9 @@ sudo setsebool -P httpd_read_user_content 1
 
 # Postgres external connection
 sudo iptables -A IN_public_allow -p tcp -m tcp --dport 5432 -m conntrack --ctstate NEW -j ACCEPT
+
+# Clickhouse external connection
+sudo iptables -A IN_public_allow -p tcp -m tcp --dport 9000 -m conntrack --ctstate NEW -j ACCEPT
 ```
 
 # Troubleshooting
