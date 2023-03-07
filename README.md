@@ -93,7 +93,7 @@ FRONTEND_DOMAIN=datamexico.org
 - con el ambiente y el archivo `.env` creados se puede activar el ambiente con el siguiente comando:
 ```
 # Activar ambiente
-sudo docker run -it --rm -p 8888:8888 -v $(pwd):/data-etl --workdir /data-etl --env-file $(pwd)/.env --name=dmx-etl dmx-etl:latest bash
+sudo docker run -it --rm -p 8888:8888 -v $(pwd):/data-etl -v /home/datamexico-data:/data-etl/etl/datamexico-data --workdir /data-etl --env-file $(pwd)/.env --name=dmx-etl dmx-etl:latest bash
 ```
 
 ## NodeJS, PM2
