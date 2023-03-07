@@ -17,7 +17,6 @@ El servidor backend tiene las siguientes aplicaciones instaladas:
 - NodeJS, PM2
 - Clickhouse
 - Postgresql
-- Custom-Foreign-Trade
 - Tesseract-OLAP
 - Tesseract-UI
 - Geoservice
@@ -136,9 +135,6 @@ sudo systemctl start postgresql-12
 sudo yum install -y postgis.x86_64 0:2.0.7-2.el7 postgis25_12
 ```
 
-## Custom-Foreign-Trade
-Aplicacion escrita en Python/Flask, los datos de comercio exterior contienen datos anonimizados que actualmente no son mostrados en la plataforma, como el indicador de crecimiento se ve afectado la aplicacion elimina los valores reales de la consulta a la base de datos y solo retorna el crecimiento, las instrucciones para instalar la aplicacion se encuentran en la ruta `/custom-foreign-trade` de este repositorio.
-
 ## Tesseract-OLAP
 Tesseract-OLAP es la aplicacion que permite hacer consultas a la base de datos, requiere tener **Rust** instalado y el archivo `schema.xml` que se encuentra en el repositorio **datamexico-tesseract**, las instrucciones para compilar la aplicacion son las siguientes:
 
@@ -188,7 +184,7 @@ maxmemory 10737418240
 Reiniciar luego actualizar el archivo de configuracion `sudo service redis restart`
 
 ## Nginx
-Servicio que expone las aplicaciones internas del servidor, Tesseract-OLAP, Tesseract-UI, Custom-Foreign-Trade, y datamexico-site, tambien se utiliza como **cache** reduciendo el tiempo de respuesta de la plataforma, la instalacion es parte de los requerimientos, pero es necesario inicializar el servicio:
+Servicio que expone las aplicaciones internas del servidor, Tesseract-OLAP, Tesseract-UI y datamexico-site, tambien se utiliza como **cache** reduciendo el tiempo de respuesta de la plataforma, la instalacion es parte de los requerimientos, pero es necesario inicializar el servicio:
 ```
 sudo service nginx start
 sudo systemctl enable nginx
@@ -436,7 +432,7 @@ sudo npm install pm2@latest -g
 # Configuracion Frontend
 
 ## FDI pipelines
-Similar al caso de Custom-Foreign-Trade, los datos del FDI tambien estan anonimizados, pero se entregan datos agregados, los archivos `*.json` se crean en el ETL y deben ser movidos al directorio `datamexico-site/static/api/`, los archivos son los siguientes y los pasos para crearlos son https://github.com/datamexico/data-etl/tree/master/etl/foreign_direct_investment:
+Los datos del FDI estan anonimizados, pero se entregan datos agregados al cliente, los archivos `*.json` se crean en el ETL y deben ser movidos al directorio `datamexico-site/static/api/`, los archivos son los siguientes y los pasos para crearlos son https://github.com/datamexico/data-etl/tree/master/etl/foreign_direct_investment:
 ```
 - accumulated_value.json
 - country_ent.json
