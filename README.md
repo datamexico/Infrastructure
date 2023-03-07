@@ -472,6 +472,8 @@ module.exports = {
       env: {
         NODE_ENV: "deployment",
         CANON_API: "https://<frontend-domain>",
+        // if CANON_API has a path, CANON_API: "https://datamexico.org/dm-dev-web", then you need to include the following in the ecosystem:
+        // CANON_BASE_URL: "/dm-dev-web",
         CANON_STATS_API: "https://<api-domain>/tesseract",
         CANON_STATS_LOGGING: "true",
         CANON_CONST_BASE: "https://<api-domain>/tesseract/",
@@ -494,6 +496,22 @@ module.exports = {
     }
   ]
 };
+```
+- si la variable `CANON_BASE_URL` se encuentra en `ecosystem.config.js` tambien es necesario agregarla durante el build del sitio en el script `init.sh` que se encuentra en el repositorio:
+```
+if [ -z "$1" ]
+then
+   echo "ERROR: branch argument is missing: Run 'bash init.sh develop'"
+else
+  rm -rf node_modules/
+  git checkout $1
+  git fetch -p
+  git pull
+  npm ci
+  export CANON_BASE_URL=/dm-dev-web; npm run build
+  pm2 restart ecosystem.config.js --update-env
+  pm2 save
+fi
 ```
 - reemplazar con ips/dominios/path/credenciales dentro de `ecosystem.config.js`:
 ```
