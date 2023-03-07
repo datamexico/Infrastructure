@@ -81,7 +81,7 @@ sudo docker build -t dmx-etl:latest .
 - Solo es necesario crear el ambiente una unica vez, en sesiones posteriores solo hay que activarlo
 - el archivo **.env** contiene las variables de entorno de la base de datos, deben ser reemplazadas segun el ambiente (dev, staging, prod):
 ```
-CLICKHOUSE_URL=host.docker.internal
+CLICKHOUSE_URL=127.0.0.1
 CLICKHOUSE_DATABASE=default
 CLICKHOUSE_USERNAME=default
 CLICKHOUSE_PASSWORD=
@@ -90,10 +90,10 @@ BASE_URL=http://localhost:7777
 BACKEND_DOMAIN=api.datamexico.org
 FRONTEND_DOMAIN=datamexico.org
 ```
-- con el ambiente y el archivo `.env` creados se puede activar el ambiente con el siguiente comando:
+- el archivo `.env` se crea dentro del repositorio del ETL `/data-etl/.env`, misma ruta desde donde se activa el ambiente de docker con el siguiente comando:
 ```
 # Activar ambiente
-sudo docker run -it --rm -p 8888:8888 -v $(pwd):/data-etl -v /home/datamexico-data:/data-etl/etl/datamexico-data --workdir /data-etl --env-file $(pwd)/.env --name=dmx-etl dmx-etl:latest bash
+sudo docker run -it --rm -p 8888:8888 --network="host" -v $(pwd):/data-etl -v /home/datamexico-data:/data-etl/etl/datamexico-data --workdir /data-etl --env-file $(pwd)/.env --name=dmx-etl dmx-etl:latest bash
 ```
 
 ## NodeJS, PM2
@@ -203,7 +203,7 @@ PASSWORD=$(base64 < /dev/urandom | head -c8); echo "$PASSWORD"; echo -n "$PASSWO
 Lybgow8C
 621b666a24d928b2d40d418315c367e6320a4702179beaf4f97b3c9f89313d2e
 ```
-- Agregar usuarios: dentro de `<users>` tag, [documentation](https://github.com/ClickHouse/ClickHouse/blob/master/programs/server/users.xml#L17):
+- Agregar usuarios: dentro de `<users>` tag, [documentation](https://github.com/ClickHouse/ClickHouse/blob/master/programs/server/users.xml#L17), mismo usuario que se utiliza en `CLICKHOUSE_USERNAME`:
 ```
 sudo nano /etc/clickhouse-server/users.xml
 
