@@ -312,7 +312,7 @@ Environment="TESSERACT_DATABASE_URL=clickhouse://readonly:@127.0.0.1:9000/defaul
 Environment=TESSERACT_SCHEMA_FILEPATH=/absolute/path/datamexico-tesseract/schema.xml
 Environment=TESSERACT_FLUSH_SECRET=<secret>
 Environment="TESSERACT_DEBUG=true"
-Environment="TESSERACT_GEOSERVICE_URL=http://localhost:8080"
+Environment="TESSERACT_GEOSERVICE_URL=http://<backend-ip>/geoservice/"
 Environment="TESSERACT_LOGIC_LAYER_CONFIG_FILEPATH=/absolute/path/datamexico-tesseract/logic-layer-config.json"
 Environment="TESSERACT_JWT_SECRET=<secret>"
 Environment="TESSERACT_REDIS_URL=redis://localhost:6379"
