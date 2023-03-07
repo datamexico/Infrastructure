@@ -180,6 +180,12 @@ sudo yum install -y redis
 sudo systemctl start redis
 sudo systemctl enable redis
 ```
+La unica configuracion requerdia es `maxmemory 10737418240`:
+```
+> sudo nano /etc/redis.conf
+maxmemory 10737418240
+```
+Reiniciar luego actualizar el archivo de configuracion `sudo service redis restart`
 
 ## Nginx
 Servicio que expone las aplicaciones internas del servidor, Tesseract-OLAP, Tesseract-UI, Custom-Foreign-Trade, y datamexico-site, tambien se utiliza como **cache** reduciendo el tiempo de respuesta de la plataforma, la instalacion es parte de los requerimientos, pero es necesario inicializar el servicio:
